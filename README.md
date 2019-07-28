@@ -1,4 +1,4 @@
-# Defeat Thanos *
+# Defeat Thanos
 
 Created (with help from CoderSchool) by: Shawn Talvacchia
   
