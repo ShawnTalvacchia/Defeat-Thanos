@@ -12,12 +12,14 @@ We also load all of our images.
 
 let canvas;
 let ctx;
+let isOver = false;
+let isWon = false;
 
 canvas = document.createElement("canvas");
 ctx = canvas.getContext("2d");
-canvas.width = 512;
-canvas.height = 480;
-document.body.appendChild(canvas);
+canvas.width = 700;
+canvas.height = 656;
+document.getElementById("game-container").appendChild(canvas);
 
 let bgReady, heroReady, monsterReady;
 let bgImage, heroImage, monsterImage;
@@ -26,23 +28,25 @@ let startTime = Date.now();
 const SECONDS_PER_ROUND = 30;
 let elapsedTime = 0;
 
+const randomNumberWidth = () => Math.floor(Math.random() * 700)
+const randomNumberHeight = () => Math.floor(Math.random() * 656)
+
+
 function loadImages() {
   bgImage = new Image();
   bgImage.onload = function () {
-    // show the background image
     bgReady = true;
   };
   bgImage.src = "images/background.png";
+  
   heroImage = new Image();
   heroImage.onload = function () {
-    // show the hero image
     heroReady = true;
   };
   heroImage.src = "images/hero.png";
 
   monsterImage = new Image();
   monsterImage.onload = function () {
-    // show the monster image
     monsterReady = true;
   };
   monsterImage.src = "images/monster.png";
@@ -50,25 +54,17 @@ function loadImages() {
 
 /** 
  * Setting up our characters.
- * 
- * Note that heroX represents the X position of our hero.
- * heroY represents the Y position.
- * We'll need these values to know where to "draw" the hero.
- * 
- * The same applies to the monster.
  */
 
-let heroX = canvas.width / 2;
-let heroY = canvas.height / 2;
+let heroX = randomNumberWidth();
+let heroY = randomNumberHeight();
 
-let monsterX = 100;
-let monsterY = 100;
+let monsterX = randomNumberWidth() - 50;
+let monsterY = randomNumberHeight() - 50;
+let hitNumber = 0;
 
 /** 
  * Keyboard Listeners
- * You can safely ignore this part, for now. 
- * 
- * This is just to let JavaScript know when the user has pressed a key.
 */
 let keysDown = {};
 function setupKeyboardListeners() {
@@ -91,44 +87,45 @@ function setupKeyboardListeners() {
  *  If you change the value of 5, the player will move at a different rate.
  */
 let update = function () {
-  // Update the time.
   elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+  
+  if (hitNumber >= 20) {
+    isWon = true;
+  }
+  else if (elapsedTime >= SECONDS_PER_ROUND) {
+    isOver = true;
+  }
 
-
-  if (38 in keysDown) { // Player is holding up key
+  if (38 in keysDown && heroY > 1) { // Player is holding up key
     heroY -= 5;
   }
-  if (40 in keysDown) { // Player is holding down key
-    heroY += 5;
+  if (40 in keysDown && heroY < 604) { // Player is holding down key
+    heroY += 7;
   }
-  if (37 in keysDown) { // Player is holding left key
-    heroX -= 5;
+  if (37 in keysDown && heroX > 1) { // Player is holding left key
+    heroX -= 6;
   }
-  if (39 in keysDown) { // Player is holding right key
-    heroX += 5;
+  if (39 in keysDown && heroX < 650) { // Player is holding right key
+    heroX += 6;
   }
+  
+  const heroIsTouchingMonster = heroX <= (monsterX + 90)
+  && monsterX <= (heroX + 90)
+  && heroY <= (monsterY + 90)
+  && monsterY <= (heroY + 90)
 
-  // Check if player and monster collided. Our images
-  // are about 32 pixels big.
-  if (
-    heroX <= (monsterX + 32)
-    && monsterX <= (heroX + 32)
-    && heroY <= (monsterY + 32)
-    && monsterY <= (heroY + 32)
-  ) {
-    // Pick a new location for the monster.
-    // Note: Change this to place the monster at a new, random location.
-    monsterX = monsterX + 50;
-    monsterY = monsterY + 70;
+  if (heroIsTouchingMonster)
+   {
+    monsterX = randomNumberWidth();
+    monsterY = randomNumberHeight();
+    hitNumber +=1;
   }
 };
 
-/**
- * This function, render, runs as often as possible.
- */
 var render = function () {
   if (bgReady) {
-    ctx.drawImage(bgImage, 0, 0);
+    ctx.drawImage(bgImage, 0, 0)
+    
   }
   if (heroReady) {
     ctx.drawImage(heroImage, heroX, heroY);
@@ -136,7 +133,17 @@ var render = function () {
   if (monsterReady) {
     ctx.drawImage(monsterImage, monsterX, monsterY);
   }
-  ctx.fillText(`Seconds Remaining: ${SECONDS_PER_ROUND - elapsedTime}`, 20, 100);
+
+  if (isOver) {
+    document.getElementById("Title").innerHTML = `Thanos got away!`;
+  }
+  if (isWon) {
+    document.getElementById("Title").innerHTML = `You saved Earth!`;
+  }
+
+
+  document.getElementById("Time").innerHTML = `Time: ${SECONDS_PER_ROUND - elapsedTime}`
+  document.getElementById("Hits").innerHTML = `Hits: ${hitNumber}`
 };
 
 /**
@@ -145,7 +152,9 @@ var render = function () {
  * render (based on the state of our game, draw the right things)
  */
 var main = function () {
-  update(); 
+  if(!isOver && !isWon) {
+    update();
+  } 
   render();
   // Request to do this again ASAP. This is a special method
   // for web browsers. 

@@ -2,9 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Best Game Ever!</title>
+    <title>Marvel Game - Coder School JS Lab</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Geostar&display=swap" rel="stylesheet">
+
   </head>
   <body>
-    <script src="game.js"></script>
+      <div class="container-canvas">
+        <div class="row row-titles"> 
+          <div class="col-md-3 time"> 
+            <H2 id="Time"></H1>
+          </div>
+          <div class = "col-md-6"> 
+              <H1 id="Title">Defeat Thanos!</H1>
+          </div>
+          <div class = "col-md-3 hits"> 
+              <H2 id="Hits"></H1>
+          </div>
+        </div>
+        <div class="row" id="game-container"></div>
+      </div>
+  <script src="game.js"></script>
   </body>
 </html>
