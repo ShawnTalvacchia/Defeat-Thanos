@@ -1,21 +1,8 @@
-# CoderSchool FTW - * Nam, the Monster Hunter *
+# Defeat Thanos *
 
-Created with love by: Charles Lee
+Created (with help from CoderSchool) by: Shawn Talvacchia
   
 This is a simple Canvas-based game that requires a solid understanding of the principles of JavaScript programming to customize. 
-
-## Video Walkthrough
-
-Here's a walkthrough of implemented user stories.
-
-![](http://g.recordit.co/cURdPMSHT2.gif)
-
-## Code Reviews
-
-This code was reviewed by @username and @otherusername. 
-
-* [Link to PR #X](#) - reviewed by @username.
-* [Link to PR #Y](#) - reviewed by @otherusername.   
 
 
 ## Required User Stories
@@ -27,7 +14,7 @@ This code was reviewed by @username and @otherusername.
 - [X] When the user catches a monster, a new monster is placed randomly upon the screen.
 - [X] The user can see the numbers of monsters she has caught. Every time she catches a monster, the number should increment by one. 
 - [X] The game ends when the user has caught 20 monsters. The total time elapsed is displayed upon game completion, in seconds.
-- [ ] The user can access this game from the internet (e.g. using Netlify).
+- [X] The user can access this game from the internet (e.g. using Netlify).
 - [ ] The code has been reviewed by at least one other person, using Pull Requests on GitHub.
 
 ## Optional User Stories
@@ -44,13 +31,12 @@ This code was reviewed by @username and @otherusername.
 
 ## Time Spent and Lessons Learned
 
-Time spent: **X** hours spent in total.
+Time spent: 10 hours spent in total.
 
-Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2019] [Shawn Talvacchia]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
