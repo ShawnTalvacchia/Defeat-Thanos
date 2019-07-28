@@ -7,7 +7,7 @@ This is a simple Canvas-based game that requires a solid understanding of the pr
 View online at: https://stupefied-torvalds-90c26b.netlify.com/
 
 
-![image](img/gameplay.png)
+![image](images/gameplay.png)
 
 ## Required User Stories
 - [ ] I have at least three code reviews from others.
