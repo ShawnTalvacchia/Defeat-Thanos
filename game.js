@@ -56,8 +56,8 @@ function loadImages() {
  * Setting up our characters.
  */
 
-let heroX = randomNumberWidth();
-let heroY = randomNumberHeight();
+let heroX = randomNumberWidth() - 50;
+let heroY = randomNumberHeight() - 50;
 
 let monsterX = randomNumberWidth() - 50;
 let monsterY = randomNumberHeight() - 50;
@@ -116,8 +116,8 @@ let update = function () {
 
   if (heroIsTouchingMonster)
    {
-    monsterX = randomNumberWidth();
-    monsterY = randomNumberHeight();
+    monsterX = randomNumberWidth() - 50;
+    monsterY = randomNumberHeight() - 50;
     hitNumber +=1;
   }
 };

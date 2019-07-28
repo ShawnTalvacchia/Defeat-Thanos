@@ -4,6 +4,10 @@ Created (with help from CoderSchool) by: Shawn Talvacchia
   
 This is a simple Canvas-based game that requires a solid understanding of the principles of JavaScript programming to customize. 
 
+View online at: https://stupefied-torvalds-90c26b.netlify.com/
+
+
+![image](img/gameplay.png)
 
 ## Required User Stories
 - [ ] I have at least three code reviews from others.
@@ -36,7 +40,7 @@ Time spent: 10 hours spent in total.
 
 ## License
 
-    Copyright [2019] [Shawn Talvacchia]
+    Copyright 2019 by Shawn Talvacchia
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
